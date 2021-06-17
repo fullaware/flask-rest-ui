@@ -8,9 +8,8 @@
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <style>
         .wrapper {
-            width: 800px;
+            width: 1024px;
             margin: 0 auto;
-            text-align: center;
         }
 
         table tr td:last-child {
@@ -23,14 +22,20 @@
     <div class="wrapper">
         <div class="container-fluid">
             {% include 'nav.html' %}
+            <h3>
+                <a href="{{ url_for('show_all') }}">Happy Cars - Flask
+                    SQLAlchemy</a>
+            </h3>
+            <hr />
 
             {%- for category, message in get_flashed_messages(with_categories = true) %}
             <div class="alert alert-danger">
                 {{ message }}
             </div>
             {%- endfor %}
-
-            <form action="new" method="POST">
+            <div>Update vehicle ID : </div>
+            <form action="new" method="POST" action="./update/" style="display: inline">
+                <input type="hidden" id="car_id" name="car_id" value="{{ vehicle.car_id }}" >
                 <label for="car_make">Make</label><br>
                 <input type="text" name="car_make" placeholder="Make" /><br>
                 <label for="car_model">Model</label><br>
@@ -39,7 +44,7 @@
                 <input type="text" name="car_year" placeholder="YYYY" /><br>
                 <label for="car_color">Color</label><br>
                 <input type="text" name="car_color" placeholder="Color" /><br>
-                <label for="car_hp">Horsepower</label><br>
+                <label for="car_hp">Horespower</label><br>
                 <input type="text" name="car_hp" placeholder="HHH" /><br>
                 <input type="submit" value="Submit" />
             </form>

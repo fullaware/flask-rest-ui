@@ -7,8 +7,9 @@
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <style>
         .wrapper {
-            width: 1024px;
+            width: 800px;
             margin: 0 auto;
+            text-align: center;
         }
 
         table tr td:last-child {
@@ -20,18 +21,11 @@
 <body>
     <div class="wrapper">
         <div class="container-fluid">
-            <h3>
-                <a href="{{ url_for('show_all') }}">Happy Cars - Flask
-                    SQLAlchemy</a>
-            </h3>
+            {% include 'nav.html' %}
 
-            <hr />
             {%- for message in get_flashed_messages() %}
             {{ message }}
             {%- endfor %}
-
-            <h3>Vehicles (<a href="{{ url_for('new') }}">Add Vehicle
-                </a>)</h3>
 
             <table class="table table-bordered table-hover table-striped">
                 <thead>
@@ -50,19 +44,20 @@
                 <tbody>
                     {% for vehicle in vehicles %}
                     <tr>
-                        <td>{{ vehicle.car_id }}</td>
-                        <td>{{ vehicle.car_make }}</td>
-                        <td>{{ vehicle.car_model }}</td>
-                        <td>{{ vehicle.car_year }}</td>
-                        <td>{{ vehicle.car_color }}</td>
-                        <td>{{ vehicle.car_hp }}</td>
+                        <form method="POST" action="./update" style="display: inline">
+                        <td><input type="text" id="car_id" name="car_id" value="{{ vehicle.car_id }}" minlength="1" maxlength="3" size="1"></td>
+                        <td><input type="text" id="car_make" name="car_make" value="{{ vehicle.car_make }}"  size="12"></td>
+                        <td><input type="text" id="car_model" name="car_model" value="{{ vehicle.car_model }}" size="10"></td>
+                        <td><input type="text" id="car_year" name="car_year" value="{{ vehicle.car_year }}"  size="4"></td>
+                        <td><input type="text" id="car_color" name="car_color" value="{{ vehicle.car_color }}" size="8"></td>
+                        <td><input type="text" id="car_hp" name="car_hp" value="{{ vehicle.car_hp }}" size="4"></td>
                         <td>
-                            <form method="PUT" action="./vehicles/{{ vehicle.car_id }}" style="display: inline">
-                                <input type="submit" value="Update">
-                            </form>
+                            <input type="submit" value="Update">
+                        </td>
+                        </form>
                         </td>
                         <td>
-                            <form method="DELETE" action="./vehicles/{{ vehicle.car_id }}" style="display: inline">
+                            <form method="POST" action="./delete/{{ vehicle.car_id }}" style="display: inline">
                                 <input type="submit" value="Delete">
                             </form>
                         </td>

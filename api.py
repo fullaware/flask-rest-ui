@@ -1,11 +1,13 @@
+import requests
 from vehicles import *
 
-
 # route to get all movies
+
+
 @app.route('/api/vehicles', methods=['GET'])
 def get_vehicles():
-    '''Function to get all the movies in the database'''
-    return jsonify({'Movies': Vehicles.get_all_vehicles()})
+    '''Function to get all the vehicles in the database'''
+    return jsonify(Vehicles.get_all_vehicles())
 
 
 # route to get vehicle by id
@@ -22,7 +24,7 @@ def add_vehicle():
     request_data = request.get_json()  # getting data from client
     print(request_data)
     Vehicles.add_vehicle(request_data["car_make"], request_data["car_model"],
-                    request_data["car_year"],request_data["car_color"], request_data["car_hp"])
+                         request_data["car_year"], request_data["car_color"], request_data["car_hp"])
     response = Response("Vehicle added", 201, mimetype='application/json')
     return response
 
@@ -33,8 +35,9 @@ def update_vehicle(car_id):
     '''Function to edit vehicle in our database using vehicle id'''
     request_data = request.get_json()
     Vehicles.update_vehicle(car_id, request_data["car_make"], request_data["car_model"],
-                    request_data["car_year"],request_data["car_color"], request_data["car_hp"])
-    response = Response("Vehicle Updated", status=200, mimetype='application/json')
+                            request_data["car_year"], request_data["car_color"], request_data["car_hp"])
+    response = Response("Vehicle Updated", status=200,
+                        mimetype='application/json')
     return response
 
 
@@ -43,8 +46,17 @@ def update_vehicle(car_id):
 def remove_vehicle(car_id):
     '''Function to delete vehicle from our database'''
     Vehicles.delete_vehicle(car_id)
-    response = Response("Vehicle Deleted", status=200, mimetype='application/json')
+    response = Response("Vehicle Deleted", status=200,
+                        mimetype='application/json')
     return response
 
+# route to search all vehicles by string
 
 
+@app.route('/api/vehicles/search', methods=['POST'])
+def search_vehicles():
+    json_search = request.get_json()
+    search_string = json_search['search']
+    print(search_string)
+    
+    return Vehicles.search_all_vehicles(search_string)

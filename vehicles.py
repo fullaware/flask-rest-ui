@@ -1,11 +1,13 @@
+from requests.sessions import session
 from settings import *
 import json
+from sqlalchemy import or_
 
 # Initializing our database
 db = SQLAlchemy(app)
 
 
-# the class Movie will inherit the db.Model of SQLAlchemy
+# the class Vehicles will inherit the db.Model of SQLAlchemy
 class Vehicles(db.Model):
     __tablename__ = 'car_demo'  # creating a table name
     car_id = db.Column(db.Integer, primary_key=True)  # this is the primary key
@@ -25,13 +27,13 @@ class Vehicles(db.Model):
     def add_vehicle(_car_make, _car_model, _car_year, _car_color, _car_hp):
         '''function to add vehicle to database using _title, _year, _genre
         as parameters'''
-        # creating an instance of our Movie constructor
+        # creating an instance of our Vehicle constructor
         new_vehicle = Vehicles(car_make=_car_make, car_model=_car_model, car_year=_car_year, car_color=_car_color, car_hp=_car_hp)
         db.session.add(new_vehicle)  # add new vehicle to database session
         db.session.commit()  # commit changes to session
 
     def get_all_vehicles():
-        '''function to get all movies in our database'''
+        '''function to get all vehicles in our database'''
         return [Vehicles.json(vehicle) for vehicle in Vehicles.query.all()]
 
     def get_vehicle(_car_id):
@@ -59,3 +61,8 @@ class Vehicles(db.Model):
         Vehicles.query.filter_by(car_id=_car_id).delete()
         # filter by id and delete
         db.session.commit()  # commiting the new change to our database
+    
+    def search_all_vehicles(_search):
+        search = "%{}%".format(_search)
+
+        return [Vehicles.json(vehicle) for vehicle in Vehicles.query.filter(or_(Vehicles.car_make.like(search),Vehicles.car_model.like(search))).all()]
