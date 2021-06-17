@@ -1,9 +1,14 @@
 from typing import Text
 from flask import Flask, request, flash, url_for, redirect, render_template
-from flask_sqlalchemy import SQLAlchemy
+import json
 from werkzeug.wrappers import response
-from settings import *
 import requests
+# Set API endpoint URL
+api_endpoint = "http://localhost:8080/api/vehicles"
+
+# creating an instance of the flask app
+app = Flask(__name__)
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 
 @app.route('/')
