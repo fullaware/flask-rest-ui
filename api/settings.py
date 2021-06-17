@@ -14,4 +14,4 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://{user}:{password
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Set API endpoint URL
-api_endpoint = "http://localhost:1234/api/vehicles"
+api_endpoint = "http://localhost:8080/api/vehicles"

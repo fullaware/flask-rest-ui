@@ -2,7 +2,7 @@ from typing import Text
 from flask import Flask, request, flash, url_for, redirect, render_template
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.wrappers import response
-from api import *
+from settings import *
 import requests
 
 
@@ -75,4 +75,4 @@ def search():
     return redirect(url_for('show_all'))
 
 if __name__ == "__main__":
-    app.run(port=1234, debug=True)
+    app.run(port=8088, debug=True)
