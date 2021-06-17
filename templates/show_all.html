@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <style>
+        .wrapper {
+            width: 1024px;
+            margin: 0 auto;
+        }
+
+        table tr td:last-child {
+            width: 120px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="container-fluid">
+            <h3>
+                <a href="{{ url_for('show_all') }}">Happy Cars - Flask
+                    SQLAlchemy</a>
+            </h3>
+
+            <hr />
+            {%- for message in get_flashed_messages() %}
+            {{ message }}
+            {%- endfor %}
+
+            <h3>Vehicles (<a href="{{ url_for('new') }}">Add Vehicle
+                </a>)</h3>
+
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Make</th>
+                        <th>Model</th>
+                        <th>Year</th>
+                        <th>Color</th>
+                        <th>HP</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for vehicle in vehicles %}
+                    <tr>
+                        <td>{{ vehicle.car_id }}</td>
+                        <td>{{ vehicle.car_make }}</td>
+                        <td>{{ vehicle.car_model }}</td>
+                        <td>{{ vehicle.car_year }}</td>
+                        <td>{{ vehicle.car_color }}</td>
+                        <td>{{ vehicle.car_hp }}</td>
+                        <td>
+                            <form method="PUT" action="./vehicles/{{ vehicle.car_id }}" style="display: inline">
+                                <input type="submit" value="Update">
+                            </form>
+                        </td>
+                        <td>
+                            <form method="DELETE" action="./vehicles/{{ vehicle.car_id }}" style="display: inline">
+                                <input type="submit" value="Delete">
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
