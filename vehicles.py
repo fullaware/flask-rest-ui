@@ -1,5 +1,5 @@
 from requests.sessions import session
-from settings import *
+from api_settings import *
 import json
 from sqlalchemy import or_
 

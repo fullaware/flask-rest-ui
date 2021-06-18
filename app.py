@@ -1,15 +1,4 @@
-from typing import Text
-from flask import Flask, request, flash, url_for, redirect, render_template
-import json
-from werkzeug.wrappers import response
-import requests
-# Set API endpoint URL
-api_endpoint = "http://localhost:8080/api/vehicles"
-
-# creating an instance of the flask app
-app = Flask(__name__)
-app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
-
+from app_settings import *
 
 @app.route('/')
 def show_all():
@@ -80,4 +69,4 @@ def search():
     return redirect(url_for('show_all'))
 
 if __name__ == "__main__":
-    app.run(port=8088, debug=True)
+    app.run(host='0.0.0.0',port=8088, debug=True)

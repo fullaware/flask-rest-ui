@@ -61,5 +61,7 @@ def search_vehicles():
     
     return Vehicles.search_all_vehicles(search_string)
 
+
+
 if __name__ == "__main__":
-    app.run(port=8080, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)
