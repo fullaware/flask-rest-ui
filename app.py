@@ -69,4 +69,4 @@ def search():
     return redirect(url_for('show_all'))
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0',port=8088, debug=True)
+    app.run(host='0.0.0.0',port=8088, debug=False)
