@@ -61,7 +61,10 @@ def search_vehicles():
     
     return Vehicles.search_all_vehicles(search_string)
 
-
+@app.route('/api/vehicles/analyze', methods=['GET'])
+def analyze_vehicles():
+    '''Function to get all the vehicles in the database'''
+    return jsonify(Vehicles.analyze_vehicles())
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080, debug=True)

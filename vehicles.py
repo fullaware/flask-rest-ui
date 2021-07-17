@@ -1,7 +1,7 @@
 from requests.sessions import session
 from api_settings import *
 import json
-from sqlalchemy import or_
+from sqlalchemy import or_, func
 
 # Initializing our database
 db = SQLAlchemy(app)
@@ -66,3 +66,21 @@ class Vehicles(db.Model):
         search = "%{}%".format(_search)
 
         return [Vehicles.json(vehicle) for vehicle in Vehicles.query.filter(or_(Vehicles.car_make.like(search),Vehicles.car_model.like(search))).all()]
+
+    def analyze_vehicles():
+        '''function to analyze all vehicles in our database'''
+        
+        avg_hp_row = db.session.query(func.avg(Vehicles.car_hp)).all()
+
+        avg_hp_decimal = [x[0] for x in avg_hp_row]
+
+
+        
+        payload = {
+            'count' : Vehicles.query.count(),
+            'avg_hp' : int(avg_hp_decimal[0])
+        }
+
+
+
+        return payload
