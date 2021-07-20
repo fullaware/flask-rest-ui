@@ -74,13 +74,18 @@ class Vehicles(db.Model):
 
         avg_hp_decimal = [x[0] for x in avg_hp_row]
 
+        # color_count = Vehicles.query.count(Vehicles.car_color).all()
+        color_count_row = db.session.query(Vehicles.car_color, func.count(Vehicles.car_color)).group_by(Vehicles.car_color).order_by(func.count(Vehicles.car_color).desc()).all()
+        color_count_json = []
 
+        for row in color_count_row:
+            row_to_string = {row[0]:row[1]}
+            color_count_json.append(row_to_string)
         
         payload = {
             'count' : Vehicles.query.count(),
-            'avg_hp' : int(avg_hp_decimal[0])
+            'avg_hp' : int(avg_hp_decimal[0]),
+            'color_count' : color_count_json
         }
-
-
-
+        
         return payload
