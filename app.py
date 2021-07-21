@@ -68,5 +68,13 @@ def search():
 
     return redirect(url_for('show_all'))
 
+@app.route('/analytics')
+def analytics():
+    uri_endpoint = api_endpoint+'/analytics'
+    response = requests.get(uri_endpoint)
+    color_count = response.json()['color_count']
+    print(color_count)
+    return render_template('analytics.html', analytics=response.json(), colors=color_count)
+
 if __name__ == "__main__":
-    app.run(host='0.0.0.0',port=8088, debug=False)
+    app.run(host='0.0.0.0',port=8088, debug=True)
