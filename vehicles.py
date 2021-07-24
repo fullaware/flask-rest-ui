@@ -2,6 +2,7 @@ from requests.sessions import session
 from api_settings import *
 import json
 from sqlalchemy import or_, func
+from collections import defaultdict
 
 # Initializing our database
 db = SQLAlchemy(app)
@@ -76,16 +77,17 @@ class Vehicles(db.Model):
 
         # color_count = Vehicles.query.count(Vehicles.car_color).all()
         color_count_row = db.session.query(Vehicles.car_color, func.count(Vehicles.car_color)).group_by(Vehicles.car_color).order_by(func.count(Vehicles.car_color).desc()).all()
-        color_count_json = []
+
+        color_count_dict = {}
 
         for row in color_count_row:
-            row_to_string = {row[0]:row[1]}
-            color_count_json.append(row_to_string)
-        
+            color_count_dict[row[0]] = row[1]
+
+
         payload = {
             'count' : Vehicles.query.count(),
             'avg_hp' : int(avg_hp_decimal[0]),
-            'color_count' : color_count_json
+            'color_count' : color_count_dict
         }
         
         return payload
