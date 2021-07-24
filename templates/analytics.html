@@ -28,13 +28,16 @@
             {{ message }}
             {%- endfor %}
             <h3 class="pull-left">Vehicle Details</h3>
-                    Total cars = {{ analytics.count }} </p>
-                    Average Horsepower = {{ analytics.avg_hp }} </p>
-                    {% for color in colors %}
-                    <tr>
-                            <td>{{ color[1] }}</td>
-                    </tr>
-                    {% endfor %}
+            Total cars = {{ analytics.count }} </p>
+            Average Horsepower = {{ analytics.avg_hp }} </p>
+            {% for color in colors %}
+            <tr>
+                <td>{{ color.color }}</td>
+            </tr>
+            <tr>
+                <td>{{ color.count }}</td>
+            </tr>
+            {% endfor %}
         </div>
     </div>
 </body>
