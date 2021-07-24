@@ -86,8 +86,10 @@ class Vehicles(db.Model):
 
         payload = {
             'count' : Vehicles.query.count(),
-            'avg_hp' : int(avg_hp_decimal[0]),
-            'color_count' : color_count_dict
+            'avg_hp' : int(avg_hp_decimal[0])
+            [
+                'color_count' : color_count_dict
+            ]
         }
         
         return payload
