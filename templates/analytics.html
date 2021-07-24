@@ -30,13 +30,9 @@
             <h3 class="pull-left">Vehicle Details</h3>
             Total cars = {{ analytics.count }} </p>
             Average Horsepower = {{ analytics.avg_hp }} </p>
-            {% for color in colors %}
-            <tr>
-                <td>{{ color.color }}</td>
-            </tr>
-            <tr>
-                <td>{{ color.count }}</td>
-            </tr>
+            Color Count
+            {% for colorcount in analytics.color_count %}
+                    {{ colorcount }}
             {% endfor %}
         </div>
     </div>
