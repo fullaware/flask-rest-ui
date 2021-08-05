@@ -96,4 +96,4 @@ class Vehicles(db.Model):
             'color_count': color_count_dict
         }
         
-        return payload
+        return [payload]
