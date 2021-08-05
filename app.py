@@ -71,10 +71,11 @@ def search():
 @app.route('/analytics')
 def analytics():
     uri_endpoint = api_endpoint+'/analytics'
-    uri_endpoint2 = api_endpoint+'/coloranalytics'
+    uri_endpoint2 = api_endpoint+'/analyticscolor'
     response = requests.get(uri_endpoint)
     colorcount = requests.get(uri_endpoint2)
 
+    # print(colorcount.json())
     return render_template('analytics.html', analytics=response.json(), colors=colorcount.json())
 
 if __name__ == "__main__":
