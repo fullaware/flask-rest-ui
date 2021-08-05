@@ -66,5 +66,10 @@ def analyze_vehicles():
     '''Function to get all the vehicles in the database'''
     return jsonify(Vehicles.analyze_vehicles())
 
+@app.route('/api/vehicles/analyticscolor', methods=['GET'])
+def analyze_colors():
+    '''Function to get all the vehicles in the database'''
+    return jsonify(Vehicles.analyze_colors())
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080, debug=True)
