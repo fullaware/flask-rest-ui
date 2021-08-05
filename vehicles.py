@@ -86,14 +86,31 @@ class Vehicles(db.Model):
         '''function to analyze all vehicles in our database'''
         
         color_count_row = db.session.query(Vehicles.car_color, func.count(Vehicles.car_color)).group_by(Vehicles.car_color).order_by(func.count(Vehicles.car_color).desc()).all()
-
+        #print(color_count_row)
         color_count_dict = {}
-
-        for row in color_count_row:
-            color_count_dict[row[0]] = row[1]
-
-        payload = {
-            'color_count': color_count_dict
-        }
+        color_count_total = []
         
-        return [payload]
+        #   Appending a list to dictionary
+        
+        #  https://stackoverflow.com/questions/26367812/appending-to-list-in-python-dictionary
+        for row in color_count_row:
+            color_count_dict["color"] = row[0]
+            color_count_dict["count"] = row[1]
+
+            color_dict = defaultdict(color_count_total)
+            for color, count in color_dict:
+                color_count_total[color].append(count) 
+            
+            
+
+        
+               
+            
+        print(color_count_total)
+            
+
+        # payload = {
+        #    'color_count': color_count_dict
+        #}
+        
+        return color_count_total
