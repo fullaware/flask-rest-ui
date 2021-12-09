@@ -5,7 +5,7 @@ from werkzeug.wrappers import response
 import requests
 
 # Set API endpoint URL
-api_endpoint = "http://10.28.28.82:8080/api/vehicles"
+api_endpoint = "http://10.28.28.81:8080/api/vehicles"
 
 # creating an instance of the flask app
 app = Flask(__name__)
