@@ -10,5 +10,3 @@ api_endpoint = "http://localhost:8080/api/vehicles"
 # creating an instance of the flask app
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
-
-site_title = "Sir Cars-a-Lot"
