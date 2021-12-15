@@ -1,6 +1,7 @@
 # importing libraries
 from flask import Flask, request, Response, jsonify
 from flask_sqlalchemy import SQLAlchemy
+import urllib.parse
 
 # Docker passthrough environment variables
 import os
@@ -16,8 +17,8 @@ print(f"Running with user: {username} with password: {password}")
 # creating an instance of the flask app
 app = Flask(__name__)
 db_server = '10.28.28.30'
-db_user = 'fullaware'
-db_password = "IamR00t"
+db_user = 'carlot'
+db_password = urllib.parse.quote_plus("I@mR00t")
 db_name = 'car_demo'
 
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
