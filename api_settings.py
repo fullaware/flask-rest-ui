@@ -2,10 +2,9 @@
 from flask import Flask, request, Response, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import urllib.parse
-
-# Docker passthrough environment variables
 import os
 
+# PHASE 2 - Docker passthrough environment variables
 if "MY_USER" in os.environ:
     username = os.environ['MY_USER']
     password = os.environ['MY_PASS']
@@ -18,7 +17,7 @@ print(f"Running with user: {username} with password: {password}")
 app = Flask(__name__)
 db_server = '10.28.28.30'
 db_user = 'carlot'
-db_password = urllib.parse.quote_plus("I@mR00t")
+db_password = urllib.parse.quote_plus("I@mR00t") # Fix for passwords with non-alphanumeric symbols
 db_name = 'car_demo'
 
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
