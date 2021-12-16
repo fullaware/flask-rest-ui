@@ -1,13 +1,22 @@
 # Flask-REST + WebUI
 A Flask RESTful template for performing CRUD operations on an SQLAlchemy vehicle database.
 
-Configuration
+### Configuration
 * Create and load mariadb/mysql database from /dbinit
 * Edit app_settings to point to api.py URL
 * Edit api_settings to point to mariadb/mysql database
 * Execute app.py and api.py separately 
 
-WebUI --> http://URL:8088 --> REST --> http://URL:8080
+WebUI --> http://localhos:8080 --> REST <--> http://localhost:8088
+
+### Docker Notes:
+```console
+docker build -t fullaware/car_demo . -f Dockerfile_app
+docker build -t fullaware/car_demo_api . -f Dockerfile_api
+
+docker run -p 8080:8080 fullaware/car_demo:latest
+docker run -p 8088:8088 fullaware/car_demo_api:latest
+```
 
 SQLAlchemy used to execute following queries
 
