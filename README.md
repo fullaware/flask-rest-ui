@@ -14,8 +14,17 @@ WebUI --> http://localhos:8080 --> REST <--> http://localhost:8088
 docker build -t fullaware/car_demo . -f Dockerfile_app
 docker build -t fullaware/car_demo_api . -f Dockerfile_api
 
-docker run -p 8080:8080 fullaware/car_demo:latest
-docker run -p 8088:8088 fullaware/car_demo_api:latest
+# Run APP with environment variables
+docker run --env-file app.env -p 8080:8080 fullaware/car_demo:latest
+
+# Run API with environment variables
+docker run --env-file api.env -p 8088:8088 fullaware/car_demo_api:latest
+
+
+
+# Stop remove all docker containers
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
 ```
 
 SQLAlchemy used to execute following queries

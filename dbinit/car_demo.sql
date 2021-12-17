@@ -1,5 +1,6 @@
-
-
+CREATE DATABASE IF NOT EXISTS car_demo DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CREATE USER 'carlot'@'%' IDENTIFIED BY 'I@mR00t';
+GRANT SELECT, DELETE, INSERT, UPDATE ON car_demo.* TO 'carlot'@'%' IDENTIFIED By 'I@mR00t';
 --
 -- Table structure for table `car_demo`
 --
