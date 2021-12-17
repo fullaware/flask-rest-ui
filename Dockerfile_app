@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:3.9-alpine
 RUN mkdir /my_flask_app
 WORKDIR /my_flask_app
 COPY requirements.txt /my_flask_app
