@@ -7,18 +7,18 @@ A Flask RESTful template for performing CRUD operations on an SQLAlchemy vehicle
 * Edit api_settings to point to mariadb/mysql database
 * Execute app.py and api.py separately 
 
-WebUI --> http://localhos:8080 --> REST <--> http://localhost:8088
+WebUI --> http://localhost:8080 --> REST <--> http://localhost:8088
 
 ### Docker Notes:
 ```console
-docker build -t fullaware/car_demo . -f Dockerfile_app
-docker build -t fullaware/car_demo_api . -f Dockerfile_api
+docker build -t fullaware/car-demo . -f Dockerfile_app
+docker build -t fullaware/car-demo-api . -f Dockerfile_api
 
 # Run APP with environment variables
-docker run --env-file app.env -p 8080:8080 fullaware/car_demo:latest
+docker run --env-file app.env -p 8080:8080 fullaware/car-demo:latest
 
 # Run API with environment variables
-docker run --env-file api.env -p 8088:8088 fullaware/car_demo_api:latest
+docker run --env-file api.env -p 8088:8088 fullaware/car-demo-api:latest
 
 
 
