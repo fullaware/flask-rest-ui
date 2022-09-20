@@ -13,15 +13,6 @@ services:
             - db
         networks:
             - default
-    db:
-        build: 
-            dockerfile: Dockerfile_db
-            context: ./dbinit
-        container_name: db
-        ports: 
-            - "3306:3306"
-        networks:
-            - default
     frontend:
         env_file:
             - app.env
