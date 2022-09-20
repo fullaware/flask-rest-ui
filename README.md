@@ -45,3 +45,7 @@ FROM `car_demo` ​
 GROUP BY `car_color` ​
 ORDER BY `car_count` DESC;​
 ```
+
+# NOTE: issue with mysql-connector
+https://stackoverflow.com/questions/73244027/character-set-utf8-unsupported-in-python-mysql-connector
+Set requirements.txt `mysql-connector-python==8.0.29` instead of latest which is `8.0.30`
