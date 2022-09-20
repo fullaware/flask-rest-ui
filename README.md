@@ -11,8 +11,7 @@ WebUI --> http://localhost:8080 --> REST <--> http://localhost:8088
 
 ### Docker Notes:
 ```console
-docker build -t fullaware/car-demo . -f Dockerfile_app
-docker build -t fullaware/car-demo-api . -f Dockerfile_api
+docker compose build
 
 # Run APP with environment variables
 docker run --env-file app.env -p 8080:8080 fullaware/car-demo:latest

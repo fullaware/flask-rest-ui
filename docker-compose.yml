@@ -6,11 +6,10 @@ services:
         build: 
             dockerfile: Dockerfile_api
             context: .
-        container_name: api
+        container_name: car-demo-api
+        image: fullaware/car-demo-api
         ports: 
             - "8088:8088"
-        links:
-            - db
         networks:
             - default
     frontend:
@@ -19,7 +18,8 @@ services:
         build: 
             dockerfile: Dockerfile_app
             context: .
-        container_name: frontend
+        container_name: car-demo
+        image: fullaware/car-demo
         ports: 
             - "8080:8080"
         links: 
