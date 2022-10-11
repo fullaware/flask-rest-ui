@@ -1,5 +1,5 @@
-Flask
-Flask-SQLAlchemy
+Flask==2.2.2
+Flask-SQLAlchemy==2.5.1
 mysql-connector-python==8.0.29
 requests
-SQLAlchemy
+SQLAlchemy==1.4.1
