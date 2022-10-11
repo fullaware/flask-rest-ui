@@ -2,22 +2,22 @@ version: "3.9"
 services:
     api:
         env_file:
-            - api.env
+            - api/api.env
         build: 
-            dockerfile: Dockerfile_api
-            context: .
+            dockerfile: api/Dockerfile
+            context: ./
         container_name: car-demo-api
         image: fullaware/car-demo-api
         ports: 
             - "8088:8088"
         networks:
             - default
-    frontend:
+    app:
         env_file:
-            - app.env
+            - app/app.env
         build: 
-            dockerfile: Dockerfile_app
-            context: .
+            dockerfile: app/Dockerfile
+            context: ./
         container_name: car-demo
         image: fullaware/car-demo
         ports: 
