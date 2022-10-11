@@ -7,7 +7,7 @@ services:
             dockerfile: api/Dockerfile
             context: ./
         container_name: car-demo-api
-        image: fullaware/car-demo-api
+        image: fullaware/car-demo-api:latest
         ports: 
             - "8088:8088"
         networks:
@@ -19,7 +19,7 @@ services:
             dockerfile: app/Dockerfile
             context: ./
         container_name: car-demo
-        image: fullaware/car-demo
+        image: fullaware/car-demo:latest
         ports: 
             - "8080:8080"
         links: 

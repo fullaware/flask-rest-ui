@@ -25,6 +25,11 @@ docker run --env-file api.env -p 8088:8088 fullaware/car-demo-api:latest
 docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
 ```
+### Paketo https://buildpacks.io/docs/tools/pack/
+```console
+pack build fullaware/car-demo-api:latest  --path api --buildpack paketo-buildpacks/python
+pack build fullaware/car-demo:latest  --path app --buildpack paketo-buildpacks/python
+```
 
 SQLAlchemy used to execute following queries
 
