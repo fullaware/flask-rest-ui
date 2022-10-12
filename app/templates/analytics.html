@@ -31,9 +31,18 @@
                     Total cars = {{ analytics.count }} </p>
                     Average Horsepower = {{ analytics.avg_hp }} </p>
                     
-                    <tr>
-                            <td>{{ analytics.color_count }}</td>
-                    </tr>
+                    <table class="table table-bordered table-hover table-striped">
+                        {% for dict_item in colors %}
+                        <tr>
+                            {% for key, value in dict_item.items() %}
+        
+                            <td>{{key}}</td>
+                            <td>{{value}}</td>
+        
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </table>
         </div>
     </div>
 </body>
