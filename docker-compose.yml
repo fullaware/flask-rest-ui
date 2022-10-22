@@ -2,7 +2,7 @@ version: "3.9"
 services:
     api:
         env_file:
-            - api/api.env
+            - api/.env
         build: 
             dockerfile: api/Dockerfile
             context: ./
@@ -14,7 +14,7 @@ services:
             - default
     app:
         env_file:
-            - app/app.env
+            - app/.env
         build: 
             dockerfile: app/Dockerfile
             context: ./

@@ -3,8 +3,10 @@ from flask import Flask, request, Response, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import urllib.parse
 import os
+from dotenv import load_dotenv
 
-# PHASE 2 - Docker passthrough environment variables
+load_dotenv()
+
 if "DB_SERVER" in os.environ and "DB_USER" in os.environ and "DB_PW" in os.environ:
     db_server = os.environ['DB_SERVER']
     db_username = os.environ['DB_USER']
@@ -15,7 +17,12 @@ if "DB_SERVER" in os.environ and "DB_USER" in os.environ and "DB_PW" in os.envir
 else:
     print(f"\nERROR : Missing environment variables:\n")
     print(f"DB_SERVER\nDB_USER\nDB_PW\nDB_NAME\n")
-    
+    print(f"Loading api.env file...\n")
+
+    db_server = os.getenv['DB_SERVER']
+    db_username = os.getenv['DB_USER']
+    db_password = urllib.parse.quote_plus(os.getenv['DB_PW']) # Fix for passwords with non-alphanumeric symbols
+    db_name = os.getenv['DB_NAME']
 
 # creating an instance of the flask app
 app = Flask(__name__)

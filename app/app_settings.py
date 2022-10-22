@@ -4,6 +4,9 @@ import json
 from werkzeug.wrappers import response
 import requests
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Set API endpoint URL
 if "API_HOSTNAME" in os.environ and "API_PORT" in os.environ:
@@ -14,7 +17,7 @@ else:
     print(f"\n INFO : Missing environment variables:\n")
     print(f"\n API_HOSTNAME\nAPI_PORT\n")
     print(f"\n Using default: http://host.docker.internal:8088\n")
-    api_endpoint = "http://host.docker.internal:8088/api/vehicles"
+    api_endpoint = f"http://{os.getenv['API_HOSTNAME']}:{os.getenv['API_PORT']}/api/vehicles"
 
 
 # creating an instance of the flask app

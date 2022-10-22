@@ -14,10 +14,10 @@ WebUI --> http://localhost:8080 --> REST <--> http://localhost:8088
 docker-compose up --build --force-recreate --no-deps [-d]
 
 # Run APP with environment variables
-docker run --env-file app.env -p 8080:8080 fullaware/car-demo:latest
+docker run --env-file app/app.env -p 8080:8080 fullaware/car-demo:latest
 
 # Run API with environment variables
-docker run --env-file api.env -p 8088:8088 fullaware/car-demo-api:latest
+docker run --env-file api/api.env -p 8088:8088 fullaware/car-demo-api:latest
 
 
 
